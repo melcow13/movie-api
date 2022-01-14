@@ -6,7 +6,12 @@ const app = express();
 app.use(morgan('common'));
 
 app.get('/movies', (req, res) => {
-  res.json();
+let movies=[
+{name:"Iron Man"},
+{name:"Incredible Hulk"},
+{name:"Iron Man 2"},
+]
+res.json(movies);
 });
 
 app.get('/', (req, res) => {

@@ -16,16 +16,17 @@ app.get('/movies', (req, res) => {
   ]
   res.json(movies);
   });
+
 //get data about a single movie
-app.get('/movies/:name', (req, res) =>{
+app.get('/movies/:name', (req, res) => {
   res.json(movies.find((movies)=>
     {return movies.name === req.params.name
     }));
   });
 
 //get data about a genre
-app.get('/movies/:genre',(req, res) =>{
-  res.json(movies.find((movie)=>
+app.get('/movies/:genre',(req, res) => {
+  res.json(movies.find((movies)=>
     {return movies.genre === req.params.genre
     }));
   });
@@ -78,16 +79,18 @@ app.post('/users/listofffavorites',(req, res)=>{
 });
 
 //delete movie
-app.delete('/users/listoffavorites',(req, res)=>{
+app.delete('/users/listoffavorites',(req, res)=> {
   let movie = movies.find((movies) => {
     return movie.name === req.params.name
   });
 
   if (movie){
     movies = movies.filer((obj)=> {
-    res.status(201).send('Movie '+ req.params.name + ' was deleted');
-  });
+      return obj.name !==req.params.name});
 
+    res.status(201).send('Movie '+ req.params.name + ' was deleted');
+    }
+  });
 //remove a user
 app.delete('/users',(req, res)=>{
   let user = users.find((user)=>

@@ -111,7 +111,7 @@ app.post('/users/listofffavorites',(req, res)=>{
 
 //delete movie
 app.delete('/users/listoffavorites',(req, res)=> {
-  let movie = movies.find((movies) => {
+  let movie = movies.find((movie) => {
     return movie.name === req.params.name
   });
 

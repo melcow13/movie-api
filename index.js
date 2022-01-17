@@ -7,13 +7,44 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(morgan('common'));
+
+let movies = [
+{
+  name:"Iron Man",
+  director: "Jon Favreau",
+  genre: ["Sci-Fi", "Super Hero", "Action-Adventure"],
+  rating: 12,
+  year: 2008
+},
+{
+  name:"Incredible Hulk",
+  director:"Louis Leterrier",
+  genre: ["Sci-Fi", "Action-Adventure"],
+  rating: 13,
+  year: 2008
+},
+{
+  name:"Iron Man 2",
+  director:"Jon Favreau",
+  genre:["Sci-Fi", "Super Hero", "Action-Adventure"],
+  rating: 12,
+  year: 2010
+}
+];
+
+let directors = [
+  {
+    name: "Jon Favreau",
+    birtday:"Octor 19, 1996"
+  },
+  {
+    name:"Louis Leterrier",
+    birthday:"June 17, 1973"
+  }
+];
+
 //get a list of movies
 app.get('/movies', (req, res) => {
-  let movies=[
-  {name:"Iron Man"},
-  {name:"Incredible Hulk"},
-  {name:"Iron Man 2"},
-  ]
   res.json(movies);
   });
 
@@ -33,8 +64,8 @@ app.get('/movies/:genre',(req, res) => {
 
 //get data about a director by name
 app.get('/movies/directors/:name',(req, res)=>{
-  res.json(directors.find((director) =>
-    {return director.name === req.params.name
+  res.json(directors.find((directors) =>
+    {return directors.name === req.params.name
     }));
   });
 
@@ -85,7 +116,7 @@ app.delete('/users/listoffavorites',(req, res)=> {
   });
 
   if (movie){
-    movies = movies.filer((obj)=> {
+    movies = movies.filter((obj)=> {
       return obj.name !==req.params.name});
 
     res.status(201).send('Movie '+ req.params.name + ' was deleted');

@@ -56,28 +56,28 @@
         </tr>
         <tr>
           <td>Update user info</td>
-          <td>/users/[Name]</td>
+          <td>/users/[ID]</td>
           <td>PUT</td>
           <td>None</td>
           <td>a text messaage indicating the username was updated</td>
         </tr>
         <tr>
           <td>Add a movie to their list of favorites</td>
-          <td>/users/listoffavorites</td>
+          <td>/users/[ID]/favorites</td>
           <td>POST</td>
           <td>None</td>
           <td>A text message indicating wether a movie was successfully added</td>
         </tr>
         <tr>
           <td>Delete movie from their list of favorites</td>
-          <td>/users/listoffavorites</td>
+          <td>/users/[ID]/favorites</td>
           <td>DELETE</td>
           <td>None</td>
           <td>a text message indicating  whether a movie was successfully removed</td>
         </tr>
         <tr>
           <td>Remove a user</td>
-          <td>/users</td>
+          <td>/users/[ID]</td>
           <td>DELETE</td>
           <td>None</td>
           <td>a text message indicating wether the user was successfully removed</td>

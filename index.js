@@ -14,40 +14,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(morgan('common'));
 
-let movies = [
-{
-  name:"Iron Man",
-  director: "Jon Favreau",
-  genre: ["Sci-Fi", "Super Hero", "Action-Adventure"],
-  rating: 12,
-  year: 2008
-},
-{
-  name:"Incredible Hulk",
-  director:"Louis Leterrier",
-  genre: ["Sci-Fi", "Action-Adventure"],
-  rating: 13,
-  year: 2008
-},
-{
-  name:"Iron Man 2",
-  director:"Jon Favreau",
-  genre:["Sci-Fi", "Super Hero", "Action-Adventure"],
-  rating: 12,
-  year: 2010
-}
-];
-
-let directors = [
-  {
-    name: "Jon Favreau",
-    birtday:"Octor 19, 1996"
-  },
-  {
-    name:"Louis Leterrier",
-    birthday:"June 17, 1973"
-  }
-];
 
 //get a list of movies
 app.get('/movies', (req, res) => {

@@ -17,7 +17,14 @@ app.use(morgan('common'));
 
 //get a list of movies
 app.get('/movies', (req, res) => {
-  res.json(movies);
+  Movies.find()
+    .then((movies)=>{
+      res.status(201).json(movies);
+    })
+    .catch((err)=>{
+      console.error(err);
+      res.status(500).send('Error: '+ err);
+    })
   });
 
 //get data about a single movie

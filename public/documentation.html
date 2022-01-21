@@ -30,7 +30,7 @@
         </tr>
         <tr>
           <td>Get data about a genre</td>
-          <td>/movies/[Name]/genre</td>
+          <td>/movies/genres/[Genre]</td>
           <td>GET</td>
           <td>None</td>
           <td>A JSON object holding data about all the movies containing a certain data</td>
@@ -44,7 +44,7 @@
         </tr>
         <tr>
           <td>Add new users to register</td>
-          <td>/users</td>
+          <td>/users/[Username]</td>
           <td>POST</td>
           <td>a JSON Object holding data about a user to add, structured like: {
             name: "John Doe",
@@ -56,28 +56,28 @@
         </tr>
         <tr>
           <td>Update user info</td>
-          <td>/users/[ID]</td>
+          <td>/users/[Username]</td>
           <td>PUT</td>
           <td>None</td>
           <td>a text messaage indicating the username was updated</td>
         </tr>
         <tr>
           <td>Add a movie to their list of favorites</td>
-          <td>/users/[ID]/favorites</td>
+          <td>/users/[Username]/favorites/[MovieName]</td>
           <td>POST</td>
           <td>None</td>
           <td>A text message indicating wether a movie was successfully added</td>
         </tr>
         <tr>
           <td>Delete movie from their list of favorites</td>
-          <td>/users/[ID]/favorites</td>
+          <td>/users/[Username]/favorites/[MovieName]</td>
           <td>DELETE</td>
           <td>None</td>
           <td>a text message indicating  whether a movie was successfully removed</td>
         </tr>
         <tr>
           <td>Remove a user</td>
-          <td>/users/[ID]</td>
+          <td>/users/[Username]</td>
           <td>DELETE</td>
           <td>None</td>
           <td>a text message indicating wether the user was successfully removed</td>

@@ -48,7 +48,7 @@ app.get('/movies/:title',passport.authenticate('jwt',{session: false}), (req, re
       console.error(err);
       res.status(500).send('Error: '+ err);
     });
-  });
+});
 
 //get data about a genre
 app.get('/movies/genres/:genre',passport.authenticate('jwt',{session: false}),(req, res) => {
@@ -60,7 +60,7 @@ app.get('/movies/genres/:genre',passport.authenticate('jwt',{session: false}),(r
       console.error(err);
       res.status(500).send('Error: '+ err);
     });
-  });
+});
 
 //get data about a director by name
 app.get('/movies/directors/:name',passport.authenticate('jwt',{session: false}),(req, res)=>{
@@ -72,7 +72,7 @@ app.get('/movies/directors/:name',passport.authenticate('jwt',{session: false}),
       console.error(err);
       res.status(500).send('Error; '+ err);
     });
-  });
+});
 
 
 //add new users to register
@@ -110,7 +110,7 @@ app.post('/users',[
         console.error(error);
         res.status(500).send('Error: ' + error);
       });
-  });
+});
 //update username
 app.put('/users/:username',passport.authenticate('jwt',{session: false}), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.username }, { $set:

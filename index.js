@@ -101,6 +101,7 @@ app.post('/users',
         } else {
           Users
             .create({
+              Name: req.body.Name,
               Username: req.body.Username,
               Password: hashedPassword,
               Email: req.body.Email,
@@ -122,6 +123,7 @@ app.post('/users',
 app.put('/users/:username',passport.authenticate('jwt',{session: false}), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.username }, { $set:
     {
+      Name: req.body.Name,
       Username: req.body.Username,
       Password: req.body.Password,
       Email: req.body.Email,

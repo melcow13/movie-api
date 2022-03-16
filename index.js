@@ -51,7 +51,7 @@ app.get('/movies/:ID',passport.authenticate('jwt',{session: false}), (req, res) 
 });
 
 //get data about a user
-app.get('/profile/:username',passport.authenticate('jwt',{session: false}), (req, res) => {
+app.get('/users/:username',passport.authenticate('jwt',{session: false}), (req, res) => {
   Users.findOne({Username: req.params.username})
     .then((user)=>{
       res.json(user);
@@ -88,7 +88,7 @@ app.get('/movies/directors/:name',passport.authenticate('jwt',{session: false}),
 
 
 //add new users
-app.post('/profile',
+app.post('/users',
   // Validation logic
   [
     check('Username', 'Username is required').isLength({min: 5}),
@@ -132,7 +132,7 @@ app.post('/profile',
       });
   });
 //update username
-app.put('/profile/:username',passport.authenticate('jwt',{session: false}), (req, res) => {
+app.put('/users/:username',passport.authenticate('jwt',{session: false}), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.username }, { $set:
     {
       Name: req.body.Name,
@@ -154,7 +154,7 @@ app.put('/profile/:username',passport.authenticate('jwt',{session: false}), (req
 });
 
 //add a movie to their list of favorites
-app.post('/profile/:Username/favorite/:MovieID', passport.authenticate('jwt',{session: false}),(req, res) => {
+app.post('/users/:Username/favorite/:MovieID', passport.authenticate('jwt',{session: false}),(req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
      $push: { FavoriteMovies: req.params.MovieID }
    },
@@ -170,7 +170,7 @@ app.post('/profile/:Username/favorite/:MovieID', passport.authenticate('jwt',{se
 });
 
 //delete movie from their favorite list
-app.delete('/profile/:Username/favorite/:MovieID',passport.authenticate('jwt',{session: false}), (req, res) => {
+app.delete('/users/:Username/favorite/:MovieID',passport.authenticate('jwt',{session: false}), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
      $pull: { FavoriteMovies: req.params.MovieID }
    },

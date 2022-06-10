@@ -5,6 +5,11 @@ passport= require('passport');
 
 require('./passport'); //local passport file
 
+/**
+ * function generating JWT token
+ * @param {*} user 
+ * @returns username encoding in the JWT and it will expires in 7days 
+ */
 let generateJWTToken= (user) =>{
   return jwt.sign(user, jwtSecret, {
     subject: user.Username, // username encoding in the JWT
@@ -13,7 +18,6 @@ let generateJWTToken= (user) =>{
   });
 }
 
-//post login
 module.exports= (router) =>{
   router.post('/login',(req, res)=>{
     passport.authenticate('local', {session: false}, (error, user, info)=>{

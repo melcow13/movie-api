@@ -26,7 +26,9 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
-//get a list of movies
+/**
+ * calls API end-point of getting all the movies in json format
+ */
 app.get('/movies',passport.authenticate('jwt',{session: false}), (req, res) => {
   Movies.find()
     .then((movies)=>{
@@ -38,7 +40,9 @@ app.get('/movies',passport.authenticate('jwt',{session: false}), (req, res) => {
     })
   });
 
-//get data about a single movie
+/**
+ * calls API end-point of getting a single movie in json format
+ */
 app.get('/movies/:ID',passport.authenticate('jwt',{session: false}), (req, res) => {
   Movies.findOne({_id: req.params.ID})
     .then((movie)=>{
@@ -50,7 +54,9 @@ app.get('/movies/:ID',passport.authenticate('jwt',{session: false}), (req, res) 
     });
 });
 
-//get data about a user
+/**
+ * calls API end-point of a user's data in json format
+ */
 app.get('/users/:username',passport.authenticate('jwt',{session: false}), (req, res) => {
   Users.findOne({Username: req.params.username})
     .then((user)=>{
@@ -62,7 +68,9 @@ app.get('/users/:username',passport.authenticate('jwt',{session: false}), (req, 
     });
 });
 
-//get data about a genre
+/**
+ * calls API end-point of a genre in json format
+ */
 app.get('/movies/genres/:genre',passport.authenticate('jwt',{session: false}),(req, res) => {
   Movies.findOne({'Genre.Name': req.params.genre })
     .then((movie)=>{
@@ -87,7 +95,9 @@ app.get('/movies/directors/:name',passport.authenticate('jwt',{session: false}),
 });
 
 
-//add new users
+/**
+ * calls API end-point of adding a user to the database
+ */
 app.post('/users',
   // Validation logic
   [
@@ -131,7 +141,9 @@ app.post('/users',
         res.status(500).send('Error: ' + error);
       });
   });
-//update username
+/**
+ * calls API end-point of updating user's data 
+ */
 app.put('/users/:username',passport.authenticate('jwt',{session: false}), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.username }, { $set:
     {
@@ -153,7 +165,9 @@ app.put('/users/:username',passport.authenticate('jwt',{session: false}), (req, 
   });
 });
 
-//add a movie to their list of favorites
+/**
+ * calls API end-point of adding a movie to the favorite movie array
+ */
 app.post('/users/:Username/favorite/:MovieID', passport.authenticate('jwt',{session: false}),(req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
      $push: { FavoriteMovies: req.params.MovieID }
@@ -169,7 +183,9 @@ app.post('/users/:Username/favorite/:MovieID', passport.authenticate('jwt',{sess
   });
 });
 
-//delete movie from their favorite list
+/**
+ * calls API end-point of removing a movie to the favorite movie array
+ */
 app.delete('/users/:Username/favorite/:MovieID',passport.authenticate('jwt',{session: false}), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
      $pull: { FavoriteMovies: req.params.MovieID }
@@ -184,7 +200,9 @@ app.delete('/users/:Username/favorite/:MovieID',passport.authenticate('jwt',{ses
     }
   });
 });
-//remove a user
+/**
+ * calls API end-point to remove current user from the database
+ */
 app.delete('/profile/:username',passport.authenticate('jwt',{session: false}), (req, res) => {
   Users.findOneAndRemove({ Username: req.params.username })
     .then((user) => {

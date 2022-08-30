@@ -144,7 +144,7 @@ app.post('/users',
 /**
  * calls API end-point of updating user's data 
  */
-app.put('/users/:username',passport.authenticate('jwt',{session: false}), (req, res) => {
+app.put('/edit/:username',passport.authenticate('jwt',{session: false}), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.username }, { $set:
     {
       Name: req.body.Name,
